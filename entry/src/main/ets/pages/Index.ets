@@ -1,8 +1,22 @@
-
+interface jiShuList{
+  img:Resource
+  text:string
+  num:number
+}
 
 @Entry
 @Component
 struct Index {
+  @State shengYuCiShu:number=10
+  @State  Opacity:number[]=[0.5,0.5,0.5,0.5,0.5]
+
+  @State JiShu:jiShuList[]=[
+    {img:$rawfile('wanneng.png'),text:'万能福',num:0},
+    {img:$rawfile('aiguo.png'),text:'爱国福',num:0},
+    {img:$rawfile('fuqiang.png'),text:'富强福',num:0},
+    {img:$rawfile('hexie.png'),text:'和谐福',num:0},
+    {img:$rawfile('youshan.png'),text:'友善福',num:0},
+  ]
 
   build() {
     //根组件
@@ -35,48 +49,82 @@ struct Index {
           .border({width:1,color:'#fffff08f'})
           .zIndex(1)
 
-          //上
+          //上1
           Image($rawfile('aiguo.gif'))
             .width(60)
             .borderRadius(2)
             .position({x:140,y:-30})
             .zIndex(0)
-            .opacity(0.5)
-          //右
+            .opacity(this.Opacity[0])
+          //右2
           Image($rawfile('hexie.gif'))
             .width(60)
             .borderRadius(2)
             .position({x:280,y:100})
             .zIndex(0)
-            .opacity(0.5)
-          //右下
+            .opacity(this.Opacity[1])
+          //右下3
           Image($rawfile('jingye.gif'))
             .width(60)
             .borderRadius(2)
             .position({x:220,y:240})
             .zIndex(0)
-            .opacity(0.5)
-          //左下
+            .opacity(this.Opacity[2])
+          //左下4
           Image($rawfile('jingye.gif'))
             .width(60)
             .borderRadius(2)
             .position({x:60,y:240})
             .zIndex(0)
-            .opacity(0.5)
-          //左
+            .opacity(this.Opacity[3])
+          //左5
           Image($rawfile('jingye.gif'))
             .width(60)
             .borderRadius(2)
             .position({x:0,y:100})
             .zIndex(0)
-            .opacity(0.5)
+            .opacity(this.Opacity[4])
 
 
 
         }
         .width('100%')
+        .margin({top:50,bottom:100})
 
-        .margin({top:50,bottom:50})
+        //下半区计数列表
+        List({space:20}){
+
+          ForEach(this.JiShu,(item:jiShuList,i)=>{
+            ListItem(){
+              Badge({
+                value:`${item.num}`,
+                style:{badgeSize:16,badgeColor:Color.Red}
+              }){
+                Column({space:5}){
+                  Image(item.img)
+                    .width(60)
+                  Text(item.text)
+                    .fontColor(Color.White)
+                }
+              }
+            }
+            .padding(5)
+          })
+
+        }
+        .width('100%')
+        .listDirection(Axis.Horizontal)
+        .height(120)
+        .margin({bottom:50})
+        .scrollBar(BarState.Off)
+
+
+        //最下方抽卡按钮
+        Button(`抽福卡 (剩余次数：${this.shengYuCiShu})`)
+          .padding(20)
+          .backgroundColor('#fff4c168')
+          .fontColor(Color.Red)
+
       }
       .width('100%')
       .height('100%')
