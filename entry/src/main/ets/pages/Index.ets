@@ -30,6 +30,7 @@ struct Index {
   @State scaleY: number = 0.7
   @State zhongjiang: boolean = false
   @State duiHuanYe: number[] = [0, 0]
+  @State duiHuanHeCheng:boolean=false
 
   build() {
     //根组件
@@ -41,39 +42,46 @@ struct Index {
         //上半区抽卡最外层
         Stack() {
 
-          //金色圈
-          Row() {
-            if (this.zhongjiang) {
-              Text('立即合成')
-                .fontSize(20)
-                .width(60)
-                .padding(5)
-                .fontWeight(700)
-                .textAlign(TextAlign.Center)
-                .height(60)
-                .borderRadius(60)
-                .backgroundColor('#fffcc02d')
-            } else {
-              Text('立即合成')
-                .fontSize(20)
-                .width(60)
-                .padding(5)
-                .fontWeight(700)
-                .textAlign(TextAlign.Center)
-                .height(60)
-                .borderRadius(60)
-                .backgroundColor(Color.Gray)
-            }
+          if (this.duiHuanHeCheng===false){
+            //金色圈
+            Row() {
 
+              if (this.zhongjiang) {
+                Text('立即合成')
+                  .fontSize(20)
+                  .width(60)
+                  .padding(5)
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Center)
+                  .height(60)
+                  .borderRadius(60)
+                  .backgroundColor('#fffcc02d')
+              } else {
+                Text('立即合成')
+                  .fontSize(20)
+                  .width(60)
+                  .padding(5)
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Center)
+                  .height(60)
+                  .borderRadius(60)
+                  .backgroundColor(Color.Gray)
+              }
+
+
+
+            }
+            .justifyContent(FlexAlign.Center)
+            .alignItems(VerticalAlign.Center)
+            .width(300)
+            .borderRadius(150)
+            .height(300)
+            .border({ width: 1, color: '#fffff08f' })
+            .zIndex(1)
+          }else if (this.duiHuanHeCheng){
 
           }
-          .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
-          .width(300)
-          .borderRadius(150)
-          .height(300)
-          .border({ width: 1, color: '#fffff08f' })
-          .zIndex(1)
+
 
           if (this.JiShu[1].num === 0) {
             //上1
