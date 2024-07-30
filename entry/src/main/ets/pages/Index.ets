@@ -26,6 +26,8 @@ struct Index {
     { img: $rawfile('fu5.png'), text: '友善福', num: 0 },
   ]
   @State randomNum:number=0
+  @State scaleX:number=0.7
+  @State scaleY:number=0.7
 
   build() {
     //根组件
@@ -185,6 +187,8 @@ struct Index {
               this.randomNum=Math.floor(Math.random()*6)
               this.zhongKaYeZ=[2,1]
               this.shengYuCiShu--
+              this.scaleX=1.1
+              this.scaleY=1.1
             }
 
           })
@@ -196,16 +200,22 @@ struct Index {
       .padding(10)
 
       //中卡页面
-      Column({ space: 20 }) {
+      Column({ space: 40 }) {
         Image($rawfile('CloseChaZi.svg'))
           .width(20)
           .translate({ x: 130 })
           .onClick(()=>{
             this.zhongKaYeZ=[0,0]
+            this.scaleX=0.9
+            this.scaleY=0.9
           })
         Image(this.imgJi[this.randomNum])
           .width(300)
           .borderRadius(14)
+          .scale({x:this.scaleX,y:this.scaleY})
+          .animation({
+            duration:500
+          })
         Button('收下福卡')
           .width(200)
           .backgroundColor('#fff4c168')
@@ -217,6 +227,8 @@ struct Index {
               num:++this.JiShu[this.randomNum].num,
             }
             this.zhongKaYeZ=[0,0]
+            this.scaleX=0.7
+            this.scaleY=0.7
           })
       }
       .justifyContent(FlexAlign.Center)
