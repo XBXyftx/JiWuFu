@@ -60,7 +60,7 @@ struct Index {
           Image($rawfile('jingye.gif'))
             .width(60)
             .borderRadius(2)
-            .position({x:80,y:240})
+            .position({x:60,y:240})
             .zIndex(0)
             .opacity(0.5)
 
