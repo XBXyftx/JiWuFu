@@ -28,6 +28,9 @@ struct Index {
   @State randomNum:number=0
   @State scaleX:number=0.7
   @State scaleY:number=0.7
+  @State zhongjiang:boolean=false
+  @State duiHuanYe:number[]=[0,0]
+
 
   build() {
     //根组件
@@ -41,15 +44,28 @@ struct Index {
 
           //金色圈
           Row() {
-            Text('立即合成')
-              .fontSize(20)
-              .width(60)
-              .padding(5)
-              .fontWeight(700)
-              .textAlign(TextAlign.Center)
-              .height(60)
-              .borderRadius(60)
-              .backgroundColor(Color.Gray)
+            if (this.zhongjiang){
+              Text('立即合成')
+                .fontSize(20)
+                .width(60)
+                .padding(5)
+                .fontWeight(700)
+                .textAlign(TextAlign.Center)
+                .height(60)
+                .borderRadius(60)
+                .backgroundColor('#fffcc02d')
+            }else {
+              Text('立即合成')
+                .fontSize(20)
+                .width(60)
+                .padding(5)
+                .fontWeight(700)
+                .textAlign(TextAlign.Center)
+                .height(60)
+                .borderRadius(60)
+                .backgroundColor(Color.Gray)
+            }
+
 
           }
           .justifyContent(FlexAlign.Center)
@@ -229,6 +245,20 @@ struct Index {
             this.zhongKaYeZ=[0,0]
             this.scaleX=0.7
             this.scaleY=0.7
+
+            let count:number=0
+            for (let i=1 ;i<this.JiShu.length;i++){
+              if (this.JiShu[i].num>0) {
+                ++count
+              }else {
+                break
+              }
+            }
+            if (count===5) {
+              this.zhongjiang=true
+            }
+
+
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -238,6 +268,16 @@ struct Index {
       .backgroundColor('rgba(0,0,0,0.8)')
       .zIndex(this.zhongKaYeZ[0])
       .opacity(this.zhongKaYeZ[1])
+
+      //兑换万能卡页面
+      Column(){
+
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor('rgba(0,0,0,0.8)')
 
     }
     .width('100%')
