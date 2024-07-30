@@ -30,7 +30,9 @@ struct Index {
   @State scaleY: number = 0.7
   @State zhongjiang: boolean = false
   @State duiHuanYe: number[] = [0, 0]
-  @State duiHuanHeCheng:boolean=false
+  @State duiHuanHeCheng: boolean = false
+  @State zhanShi: number = 0
+  @State zhanShiXianYin:number[]=[0,0]
 
   build() {
     //根组件
@@ -42,7 +44,7 @@ struct Index {
         //上半区抽卡最外层
         Stack() {
 
-          if (this.duiHuanHeCheng===false){
+          if (this.duiHuanHeCheng === false) {
             //金色圈
             Row() {
 
@@ -56,14 +58,14 @@ struct Index {
                   .height(60)
                   .borderRadius(60)
                   .backgroundColor('#fffcc02d')
-                  .onClick(()=>{
-                    this.duiHuanHeCheng=true
-                    for (let i=1;i<this.JiShu.length;i++){
-                      let n=this.JiShu[i].num
-                      this.JiShu[i]={
-                        img:this.JiShu[i].img,
-                        text:this.JiShu[i].text,
-                        num:--n
+                  .onClick(() => {
+                    this.duiHuanHeCheng = true
+                    for (let i = 1; i < this.JiShu.length; i++) {
+                      let n = this.JiShu[i].num
+                      this.JiShu[i] = {
+                        img: this.JiShu[i].img,
+                        text: this.JiShu[i].text,
+                        num: --n
                       }
                     }
                   })
@@ -78,7 +80,6 @@ struct Index {
                   .borderRadius(60)
                   .backgroundColor(Color.Gray)
               }
-
 
 
             }
@@ -173,14 +174,11 @@ struct Index {
                 .opacity(1)
             }
 
-          }else if (this.duiHuanHeCheng){
+          } else if (this.duiHuanHeCheng) {
             //最终福字
             Image($rawfile('app_icon.png'))
               .width(260)
           }
-
-
-
 
 
         }
@@ -206,7 +204,11 @@ struct Index {
                 .onClick(() => {
                   if (item.num > 0 && i === 0) {
                     this.duiHuanYe = [3, 1]
+                  }else if (item.num > 0 && i !== 0){
+                    this.zhanShi=i
+                    this.zhanShiXianYin=[3,1]
                   }
+                  
                 })
 
               }
@@ -265,7 +267,8 @@ struct Index {
         } else if (this.randomNum === 0) {
           Column({ space: 20 }) {
             Image($rawfile('fu0.gif'))
-              .width(300)
+              .width(260)
+              .borderRadius(20)
             Text('万能富祝您万事胜意')
               .fontSize(20)
               .fontColor(Color.Yellow)
@@ -338,10 +341,10 @@ struct Index {
                     text: this.JiShu[i].text,
                     num: ++n
                   }
-                  this.JiShu[0]={
+                  this.JiShu[0] = {
                     img: this.JiShu[0].img,
                     text: this.JiShu[0].text,
-                    num:--m
+                    num: --m
                   }
                   let count: number = 0
                   for (let i = 1; i < this.JiShu.length; i++) {
@@ -366,6 +369,26 @@ struct Index {
       .backgroundColor('rgba(0,0,0,0.8)')
       .zIndex(this.duiHuanYe[0])
       .opacity(this.duiHuanYe[1])
+
+      //单卡展示页
+      Column({space:20}){
+        Image($rawfile(`fu${this.zhanShi}.gif`))
+          .width(300)
+          .borderRadius(20)
+        Image($rawfile('CloseChaZi.svg'))
+          .width(20)
+          .onClick(()=>{
+            this.zhanShi=0
+            this.zhanShiXianYin=[0,0]
+          })
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor('rgba(0,0,0,0.8)')
+      .zIndex(this.zhanShiXianYin[0])
+      .opacity(this.zhanShiXianYin[1])
 
     }
     .width('100%')
