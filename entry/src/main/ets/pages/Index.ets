@@ -16,7 +16,6 @@ struct Index {
     $rawfile('fu5.gif'),
   ]
   @State shengYuCiShu: number = 10
-  @State Opacity: number[] = [0.5, 0.5, 0.5, 0.5, 0.5]
   @State zhongKaYeZ:number[] = [0,0]
   @State JiShu: jiShuList[] = [
     { img: $rawfile('fu0.png'), text: '万能福', num: 0 },
@@ -59,41 +58,89 @@ struct Index {
           .border({ width: 1, color: '#fffff08f' })
           .zIndex(1)
 
-          //上1
-          Image($rawfile('fu1.gif'))
-            .width(60)
-            .borderRadius(2)
-            .position({ x: 140, y: -30 })
-            .zIndex(0)
-            .opacity(this.Opacity[0])
-          //右2
-          Image($rawfile('fu2.gif'))
-            .width(60)
-            .borderRadius(2)
-            .position({ x: 280, y: 100 })
-            .zIndex(0)
-            .opacity(this.Opacity[1])
-          //右下3
-          Image($rawfile('fu3.gif'))
-            .width(60)
-            .borderRadius(2)
-            .position({ x: 220, y: 240 })
-            .zIndex(0)
-            .opacity(this.Opacity[2])
-          //左下4
-          Image($rawfile('fu4.gif'))
-            .width(60)
-            .borderRadius(2)
-            .position({ x: 60, y: 240 })
-            .zIndex(0)
-            .opacity(this.Opacity[3])
-          //左5
-          Image($rawfile('fu5.gif'))
-            .width(60)
-            .borderRadius(2)
-            .position({ x: 0, y: 100 })
-            .zIndex(0)
-            .opacity(this.Opacity[4])
+          if (this.JiShu[1].num===0){
+            //上1
+            Image($rawfile('fu1.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 140, y: -30 })
+              .zIndex(0)
+              .opacity(0.5)
+          }else {
+            Image($rawfile('fu1.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 140, y: -30 })
+              .zIndex(2)
+              .opacity(1)
+          }
+          if (this.JiShu[2].num===0){
+            //右2
+            Image($rawfile('fu2.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 280, y: 100 })
+              .zIndex(0)
+              .opacity(0.5)
+          }else {
+            Image($rawfile('fu2.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 280, y: 100 })
+              .zIndex(2)
+              .opacity(1)
+          }
+
+          if (this.JiShu[3].num===0){
+            //右下3
+            Image($rawfile('fu3.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 220, y: 240 })
+              .zIndex(0)
+              .opacity(0.5)
+          }else {
+            Image($rawfile('fu3.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 220, y: 240 })
+              .zIndex(2)
+              .opacity(1)
+          }
+          if (this.JiShu[4].num===0){
+            //左下4
+            Image($rawfile('fu4.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 60, y: 240 })
+              .zIndex(0)
+              .opacity(0.5)
+          }else {
+            Image($rawfile('fu4.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 60, y: 240 })
+              .zIndex(2)
+              .opacity(1)
+          }
+
+          if (this.JiShu[5].num===0){
+            //左5
+            Image($rawfile('fu5.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 0, y: 100 })
+              .zIndex(0)
+              .opacity(0.5)
+          }else {
+            Image($rawfile('fu5.gif'))
+              .width(60)
+              .borderRadius(2)
+              .position({ x: 0, y: 100 })
+              .zIndex(2)
+              .opacity(1)
+          }
+
 
 
         }
