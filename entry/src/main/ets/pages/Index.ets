@@ -46,7 +46,7 @@ struct Index {
           Image($rawfile('hexie.gif'))
             .width(60)
             .borderRadius(2)
-            .position({x:285,y:110})
+            .position({x:280,y:100})
             .zIndex(0)
             .opacity(0.5)
           //右下
@@ -61,6 +61,13 @@ struct Index {
             .width(60)
             .borderRadius(2)
             .position({x:60,y:240})
+            .zIndex(0)
+            .opacity(0.5)
+          //左
+          Image($rawfile('jingye.gif'))
+            .width(60)
+            .borderRadius(2)
+            .position({x:0,y:100})
             .zIndex(0)
             .opacity(0.5)
 
