@@ -131,6 +131,17 @@ struct Index {
       .zIndex(1)
       .padding(10)
 
+      //中卡页面
+      Column(){
+
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor('rgba(0,0,0,0.8)')
+      .zIndex(2)
+
 
     }
     .width('100%')
