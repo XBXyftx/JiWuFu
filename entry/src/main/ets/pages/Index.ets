@@ -56,6 +56,17 @@ struct Index {
                   .height(60)
                   .borderRadius(60)
                   .backgroundColor('#fffcc02d')
+                  .onClick(()=>{
+                    this.duiHuanHeCheng=true
+                    for (let i=1;i<this.JiShu.length;i++){
+                      let n=this.JiShu[i].num
+                      this.JiShu[i]={
+                        img:this.JiShu[i].img,
+                        text:this.JiShu[i].text,
+                        num:--n
+                      }
+                    }
+                  })
               } else {
                 Text('立即合成')
                   .fontSize(20)
@@ -78,93 +89,98 @@ struct Index {
             .height(300)
             .border({ width: 1, color: '#fffff08f' })
             .zIndex(1)
+
+            if (this.JiShu[1].num === 0) {
+              //上1
+              Image($rawfile('fu1.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 140, y: -30 })
+                .zIndex(0)
+                .opacity(0.5)
+            } else {
+              Image($rawfile('fu1.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 140, y: -30 })
+                .zIndex(2)
+                .opacity(1)
+            }
+            if (this.JiShu[2].num === 0) {
+              //右2
+              Image($rawfile('fu2.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 280, y: 100 })
+                .zIndex(0)
+                .opacity(0.5)
+            } else {
+              Image($rawfile('fu2.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 280, y: 100 })
+                .zIndex(2)
+                .opacity(1)
+            }
+
+            if (this.JiShu[3].num === 0) {
+              //右下3
+              Image($rawfile('fu3.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 220, y: 240 })
+                .zIndex(0)
+                .opacity(0.5)
+            } else {
+              Image($rawfile('fu3.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 220, y: 240 })
+                .zIndex(2)
+                .opacity(1)
+            }
+            if (this.JiShu[4].num === 0) {
+              //左下4
+              Image($rawfile('fu4.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 60, y: 240 })
+                .zIndex(0)
+                .opacity(0.5)
+            } else {
+              Image($rawfile('fu4.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 60, y: 240 })
+                .zIndex(2)
+                .opacity(1)
+            }
+
+            if (this.JiShu[5].num === 0) {
+              //左5
+              Image($rawfile('fu5.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 0, y: 100 })
+                .zIndex(0)
+                .opacity(0.5)
+            } else {
+              Image($rawfile('fu5.gif'))
+                .width(60)
+                .borderRadius(2)
+                .position({ x: 0, y: 100 })
+                .zIndex(2)
+                .opacity(1)
+            }
+
           }else if (this.duiHuanHeCheng){
-
+            //最终福字
+            Image($rawfile('app_icon.png'))
+              .width(260)
           }
 
 
-          if (this.JiShu[1].num === 0) {
-            //上1
-            Image($rawfile('fu1.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 140, y: -30 })
-              .zIndex(0)
-              .opacity(0.5)
-          } else {
-            Image($rawfile('fu1.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 140, y: -30 })
-              .zIndex(2)
-              .opacity(1)
-          }
-          if (this.JiShu[2].num === 0) {
-            //右2
-            Image($rawfile('fu2.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 280, y: 100 })
-              .zIndex(0)
-              .opacity(0.5)
-          } else {
-            Image($rawfile('fu2.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 280, y: 100 })
-              .zIndex(2)
-              .opacity(1)
-          }
 
-          if (this.JiShu[3].num === 0) {
-            //右下3
-            Image($rawfile('fu3.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 220, y: 240 })
-              .zIndex(0)
-              .opacity(0.5)
-          } else {
-            Image($rawfile('fu3.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 220, y: 240 })
-              .zIndex(2)
-              .opacity(1)
-          }
-          if (this.JiShu[4].num === 0) {
-            //左下4
-            Image($rawfile('fu4.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 60, y: 240 })
-              .zIndex(0)
-              .opacity(0.5)
-          } else {
-            Image($rawfile('fu4.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 60, y: 240 })
-              .zIndex(2)
-              .opacity(1)
-          }
-
-          if (this.JiShu[5].num === 0) {
-            //左5
-            Image($rawfile('fu5.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 0, y: 100 })
-              .zIndex(0)
-              .opacity(0.5)
-          } else {
-            Image($rawfile('fu5.gif'))
-              .width(60)
-              .borderRadius(2)
-              .position({ x: 0, y: 100 })
-              .zIndex(2)
-              .opacity(1)
-          }
 
 
         }
@@ -326,6 +342,17 @@ struct Index {
                     img: this.JiShu[0].img,
                     text: this.JiShu[0].text,
                     num:--m
+                  }
+                  let count: number = 0
+                  for (let i = 1; i < this.JiShu.length; i++) {
+                    if (this.JiShu[i].num > 0) {
+                      ++count
+                    } else {
+                      break
+                    }
+                  }
+                  if (count === 5) {
+                    this.zhongjiang = true
                   }
                 })
             }
