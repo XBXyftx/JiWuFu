@@ -132,8 +132,17 @@ struct Index {
       .padding(10)
 
       //中卡页面
-      Column(){
-
+      Column({space:20}){
+        Image($rawfile('CloseChaZi.svg'))
+          .width(20)
+          .translate({x:130})
+        Image($rawfile('fuqiang.gif'))
+          .width(300)
+          .borderRadius(14)
+        Button('收下福卡')
+          .width(200)
+          .backgroundColor('#fff4c168')
+          .fontColor(Color.Red)
       }
       .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)
