@@ -225,13 +225,31 @@ struct Index {
             this.scaleX=0.9
             this.scaleY=0.9
           })
-        Image(this.imgJi[this.randomNum])
-          .width(300)
-          .borderRadius(14)
+        if (this.randomNum>0){
+          Image(this.imgJi[this.randomNum])
+            .width(300)
+            .borderRadius(14)
+            .scale({x:this.scaleX,y:this.scaleY})
+            .animation({
+              duration:500
+            })
+        }else if(this.randomNum===0){
+          Column({space:20}){
+            Image($rawfile('fu0.gif'))
+              .width(300)
+            Text('万能富祝您万事胜意')
+              .fontSize(20)
+              .fontColor(Color.Yellow)
+              .fontWeight(600)
+          }
+          .backgroundColor(Color.Red)
+          .width('100%')
           .scale({x:this.scaleX,y:this.scaleY})
           .animation({
             duration:500
           })
+        }
+
         Button('收下福卡')
           .width(200)
           .backgroundColor('#fff4c168')
@@ -271,13 +289,31 @@ struct Index {
 
       //兑换万能卡页面
       Column(){
+        Flex({wrap:FlexWrap.Wrap}){
+          ForEach(this.imgJi,(item:Resource,i)=>{
+            if (i===0) {
 
+            }else {
+              Image(item)
+                .width(100)
+                .borderRadius(10)
+                .margin(40)
+                .onClick(()=>{
+                  this.duiHuanYe=[0,0]
+                  this.JiShu[i].num++
+                  this.JiShu[0].num--
+                })
+            }
+          })
+        }
       }
       .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)
       .width('100%')
       .height('100%')
       .backgroundColor('rgba(0,0,0,0.8)')
+      .zIndex(this.duiHuanYe[0])
+      .opacity(this.duiHuanYe[1])
 
     }
     .width('100%')
