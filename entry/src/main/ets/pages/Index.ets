@@ -7,7 +7,7 @@ interface jiShuList {
 @Entry
 @Component
 struct Index {
-  @State imgJi:Resource[]=[
+  @State imgJi: Resource[] = [
     $rawfile('fu0.gif'),
     $rawfile('fu1.gif'),
     $rawfile('fu2.gif'),
@@ -16,21 +16,20 @@ struct Index {
     $rawfile('fu5.gif'),
   ]
   @State shengYuCiShu: number = 10
-  @State zhongKaYeZ:number[] = [0,0]
+  @State zhongKaYeZ: number[] = [0, 0]
   @State JiShu: jiShuList[] = [
     { img: $rawfile('fu0.png'), text: '万能福', num: 0 },
-    { img: $rawfile('fu1.png'),text: '爱国福', num: 0 },
-    { img: $rawfile('fu2.png'),text: '富强福', num: 0 },
-    { img: $rawfile('fu3.png'),text: '和谐福', num: 0 },
+    { img: $rawfile('fu1.png'), text: '爱国福', num: 0 },
+    { img: $rawfile('fu2.png'), text: '富强福', num: 0 },
+    { img: $rawfile('fu3.png'), text: '和谐福', num: 0 },
     { img: $rawfile('fu4.png'), text: '敬业福', num: 0 },
     { img: $rawfile('fu5.png'), text: '友善福', num: 0 },
   ]
-  @State randomNum:number=0
-  @State scaleX:number=0.7
-  @State scaleY:number=0.7
-  @State zhongjiang:boolean=false
-  @State duiHuanYe:number[]=[0,0]
-
+  @State randomNum: number = 0
+  @State scaleX: number = 0.7
+  @State scaleY: number = 0.7
+  @State zhongjiang: boolean = false
+  @State duiHuanYe: number[] = [0, 0]
 
   build() {
     //根组件
@@ -44,7 +43,7 @@ struct Index {
 
           //金色圈
           Row() {
-            if (this.zhongjiang){
+            if (this.zhongjiang) {
               Text('立即合成')
                 .fontSize(20)
                 .width(60)
@@ -54,7 +53,7 @@ struct Index {
                 .height(60)
                 .borderRadius(60)
                 .backgroundColor('#fffcc02d')
-            }else {
+            } else {
               Text('立即合成')
                 .fontSize(20)
                 .width(60)
@@ -76,7 +75,7 @@ struct Index {
           .border({ width: 1, color: '#fffff08f' })
           .zIndex(1)
 
-          if (this.JiShu[1].num===0){
+          if (this.JiShu[1].num === 0) {
             //上1
             Image($rawfile('fu1.gif'))
               .width(60)
@@ -84,7 +83,7 @@ struct Index {
               .position({ x: 140, y: -30 })
               .zIndex(0)
               .opacity(0.5)
-          }else {
+          } else {
             Image($rawfile('fu1.gif'))
               .width(60)
               .borderRadius(2)
@@ -92,7 +91,7 @@ struct Index {
               .zIndex(2)
               .opacity(1)
           }
-          if (this.JiShu[2].num===0){
+          if (this.JiShu[2].num === 0) {
             //右2
             Image($rawfile('fu2.gif'))
               .width(60)
@@ -100,7 +99,7 @@ struct Index {
               .position({ x: 280, y: 100 })
               .zIndex(0)
               .opacity(0.5)
-          }else {
+          } else {
             Image($rawfile('fu2.gif'))
               .width(60)
               .borderRadius(2)
@@ -109,7 +108,7 @@ struct Index {
               .opacity(1)
           }
 
-          if (this.JiShu[3].num===0){
+          if (this.JiShu[3].num === 0) {
             //右下3
             Image($rawfile('fu3.gif'))
               .width(60)
@@ -117,7 +116,7 @@ struct Index {
               .position({ x: 220, y: 240 })
               .zIndex(0)
               .opacity(0.5)
-          }else {
+          } else {
             Image($rawfile('fu3.gif'))
               .width(60)
               .borderRadius(2)
@@ -125,7 +124,7 @@ struct Index {
               .zIndex(2)
               .opacity(1)
           }
-          if (this.JiShu[4].num===0){
+          if (this.JiShu[4].num === 0) {
             //左下4
             Image($rawfile('fu4.gif'))
               .width(60)
@@ -133,7 +132,7 @@ struct Index {
               .position({ x: 60, y: 240 })
               .zIndex(0)
               .opacity(0.5)
-          }else {
+          } else {
             Image($rawfile('fu4.gif'))
               .width(60)
               .borderRadius(2)
@@ -142,7 +141,7 @@ struct Index {
               .opacity(1)
           }
 
-          if (this.JiShu[5].num===0){
+          if (this.JiShu[5].num === 0) {
             //左5
             Image($rawfile('fu5.gif'))
               .width(60)
@@ -150,7 +149,7 @@ struct Index {
               .position({ x: 0, y: 100 })
               .zIndex(0)
               .opacity(0.5)
-          }else {
+          } else {
             Image($rawfile('fu5.gif'))
               .width(60)
               .borderRadius(2)
@@ -158,7 +157,6 @@ struct Index {
               .zIndex(2)
               .opacity(1)
           }
-
 
 
         }
@@ -174,12 +172,19 @@ struct Index {
                 value: item.num.toString(),
                 style: { badgeSize: 16, badgeColor: Color.Red }
               }) {
+                //万能兑换逻辑
                 Column({ space: 5 }) {
                   Image(item.img)
                     .width(60)
                   Text(item.text)
                     .fontColor(Color.White)
                 }
+                .onClick(() => {
+                  if (item.num > 0 && i === 0) {
+                    this.duiHuanYe = [3, 1]
+                  }
+                })
+
               }
             }
             .padding(5)
@@ -198,13 +203,13 @@ struct Index {
           .padding(20)
           .backgroundColor('#fff4c168')
           .fontColor(Color.Red)
-          .onClick(()=>{
-            if (this.shengYuCiShu>0) {
-              this.randomNum=Math.floor(Math.random()*6)
-              this.zhongKaYeZ=[2,1]
+          .onClick(() => {
+            if (this.shengYuCiShu > 0) {
+              this.randomNum = Math.floor(Math.random() * 6)
+              this.zhongKaYeZ = [2, 1]
               this.shengYuCiShu--
-              this.scaleX=1.1
-              this.scaleY=1.1
+              this.scaleX = 1.1
+              this.scaleY = 1.1
             }
 
           })
@@ -220,33 +225,35 @@ struct Index {
         Image($rawfile('CloseChaZi.svg'))
           .width(20)
           .translate({ x: 130 })
-          .onClick(()=>{
-            this.zhongKaYeZ=[0,0]
-            this.scaleX=0.9
-            this.scaleY=0.9
+          .onClick(() => {
+            this.zhongKaYeZ = [0, 0]
+            this.scaleX = 0.9
+            this.scaleY = 0.9
           })
-        if (this.randomNum>0){
+        if (this.randomNum > 0) {
           Image(this.imgJi[this.randomNum])
             .width(300)
             .borderRadius(14)
-            .scale({x:this.scaleX,y:this.scaleY})
+            .scale({ x: this.scaleX, y: this.scaleY })
             .animation({
-              duration:500
+              duration: 500
             })
-        }else if(this.randomNum===0){
-          Column({space:20}){
+        } else if (this.randomNum === 0) {
+          Column({ space: 20 }) {
             Image($rawfile('fu0.gif'))
               .width(300)
             Text('万能富祝您万事胜意')
               .fontSize(20)
               .fontColor(Color.Yellow)
               .fontWeight(600)
+
           }
           .backgroundColor(Color.Red)
+          .borderRadius(20)
           .width('100%')
-          .scale({x:this.scaleX,y:this.scaleY})
+          .scale({ x: this.scaleX, y: this.scaleY })
           .animation({
-            duration:500
+            duration: 500
           })
         }
 
@@ -254,26 +261,26 @@ struct Index {
           .width(200)
           .backgroundColor('#fff4c168')
           .fontColor(Color.Red)
-          .onClick(()=>{
-            this.JiShu[this.randomNum]={
-              img:$rawfile(`fu${this.randomNum}.png`),
-              text:this.JiShu[this.randomNum].text,
-              num:++this.JiShu[this.randomNum].num,
+          .onClick(() => {
+            this.JiShu[this.randomNum] = {
+              img: $rawfile(`fu${this.randomNum}.png`),
+              text: this.JiShu[this.randomNum].text,
+              num: ++this.JiShu[this.randomNum].num,
             }
-            this.zhongKaYeZ=[0,0]
-            this.scaleX=0.7
-            this.scaleY=0.7
+            this.zhongKaYeZ = [0, 0]
+            this.scaleX = 0.7
+            this.scaleY = 0.7
 
-            let count:number=0
-            for (let i=1 ;i<this.JiShu.length;i++){
-              if (this.JiShu[i].num>0) {
+            let count: number = 0
+            for (let i = 1; i < this.JiShu.length; i++) {
+              if (this.JiShu[i].num > 0) {
                 ++count
-              }else {
+              } else {
                 break
               }
             }
-            if (count===5) {
-              this.zhongjiang=true
+            if (count === 5) {
+              this.zhongjiang = true
             }
 
 
@@ -288,20 +295,30 @@ struct Index {
       .opacity(this.zhongKaYeZ[1])
 
       //兑换万能卡页面
-      Column(){
-        Flex({wrap:FlexWrap.Wrap}){
-          ForEach(this.imgJi,(item:Resource,i)=>{
-            if (i===0) {
+      Column() {
+        Flex({ wrap: FlexWrap.Wrap }) {
+          ForEach(this.imgJi, (item: Resource, i) => {
+            if (i === 0) {
 
-            }else {
+            } else {
               Image(item)
                 .width(100)
                 .borderRadius(10)
                 .margin(40)
-                .onClick(()=>{
-                  this.duiHuanYe=[0,0]
-                  this.JiShu[i].num++
-                  this.JiShu[0].num--
+                .onClick(() => {
+                  let n = this.JiShu[i].num
+                  let m = this.JiShu[0].num
+                  this.duiHuanYe = [0, 0]
+                  this.JiShu[i] = {
+                    img: this.JiShu[i].img,
+                    text: this.JiShu[i].text,
+                    num: ++n
+                  }
+                  this.JiShu[0]={
+                    img: this.JiShu[0].img,
+                    text: this.JiShu[0].text,
+                    num:--m
+                  }
                 })
             }
           })
