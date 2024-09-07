@@ -68,6 +68,8 @@ struct Index {
                         num: --n
                       }
                     }
+                    this.scaleX = 1.2
+                    this.scaleY = 1.2
                   })
               } else {
                 Text('立即合成')
@@ -178,6 +180,11 @@ struct Index {
             //最终福字
             Image($rawfile('app_icon.png'))
               .width(260)
+              .scale({ x: this.scaleX, y: this.scaleY })
+              .animation({
+                duration: 2000
+              })
+
           }
 
 
@@ -253,8 +260,8 @@ struct Index {
           .translate({ x: 130 })
           .onClick(() => {
             this.zhongKaYeZ = [0, 0]
-            this.scaleX = 0.9
-            this.scaleY = 0.9
+            this.scaleX = 0.7
+            this.scaleY = 0.7
           })
         if (this.randomNum > 0) {
           Image(this.imgJi[this.randomNum])
