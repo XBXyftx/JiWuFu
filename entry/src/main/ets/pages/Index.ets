@@ -273,6 +273,10 @@ struct Index {
               .fontSize(20)
               .fontColor(Color.Yellow)
               .fontWeight(600)
+              .scale({ x: this.scaleX, y: this.scaleY })
+              .animation({
+                duration: 500
+              })
 
           }
           .backgroundColor(Color.Red)
